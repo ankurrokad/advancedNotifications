@@ -5,7 +5,7 @@ var logger = require('morgan');
 var debug = require('debug')('fileupload:server');
 var http = require('http');
 const port = 4200
-const advanceNotifications = require('advancenotifications')
+const Notifications = require('advancenotifications')
 
 var app = express();
 
@@ -34,7 +34,7 @@ app.post('/', async (req, res) => {
             }
         }
 
-        let response = await advanceNotifications(params)
+        let response = await Notifications.sendAll(params)
         return res.send(response)
     } catch (error) {
         console.log('error', error)
